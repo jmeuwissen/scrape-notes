@@ -25,6 +25,15 @@ router.post("/api/article", function (req, res) {
     });
 })
 
+router.get("/db", function (req,res) {
+    db.Article.find({}).then( function (dbarticle) {
+        res.json(dbarticle)
+    }).catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
+})
+
 router.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
     axios.get("http://www.nytimes.com/").then(function (response) {

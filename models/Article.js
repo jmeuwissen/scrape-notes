@@ -13,6 +13,7 @@ const ArticleSchema = new Schema({
     unique: true
   },
   summary: String,
+  link: String,
   // `posts` is an array that stores ObjectIds
   // The ref property links these ObjectIds to the Post model
   // This allows us to populate the Article with any associated posts
