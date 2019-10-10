@@ -1,18 +1,21 @@
+
+const express = require("express");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-const db = require("../models")
+const db = require("../models");
 
+const router = express.Router();
 
-
-app.post("/api/article", function (req, res) {
+router.post("/api/article", function (req, res) {
+    console.log(req.body);
     db.Article.create({
         title: req.body.title,
         link: req.body.link,
         summary: req.body.summary
     }).then(function (result) {
 
-        console.log(result);
+        console.log("logging result!" + result);
         //####################################### COULD CAUSE BUG ############################
         res.send(result);
 
@@ -22,7 +25,7 @@ app.post("/api/article", function (req, res) {
     });
 })
 
-app.get("/scrape", function (req, res) {
+router.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
     axios.get("http://www.nytimes.com/").then(function (response) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -57,3 +60,5 @@ app.get("/scrape", function (req, res) {
         res.send("Scrape Complete");
     });
 });
+
+module.exports = router;
