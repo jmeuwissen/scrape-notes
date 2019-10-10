@@ -6,9 +6,9 @@ const Schema = mongoose.Schema;
 // Using the Schema constructor, create a new LibrarySchema object
 // This is similar to a Sequelize model
 const ArticleSchema = new Schema({
-  // `name` must be of type String
-  // `name` must be unique, the default mongoose error message is thrown if a duplicate value is given
-  name: {
+  // `title` must be of type String
+  // `title` must be unique, the default mongoose error message is thrown if a duplicate value is given
+  title: {
     type: String,
     unique: true
   },
